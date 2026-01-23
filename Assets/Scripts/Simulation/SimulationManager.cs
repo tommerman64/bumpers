@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SimulationManager : MonoBehaviour
 {
     public Simulation simulation;
 
     public GameObject playerPrefab;
+    public InputConfig inputConfig;
 
     public float simulationTime = 0f;
     public float lastUpdateTime = 0f;
@@ -13,6 +15,8 @@ public class SimulationManager : MonoBehaviour
     void Start()
     {
         this.simulation = new Simulation(playerPrefab);
+        this.inputConfig.dashAction.action.Enable();
+        this.inputConfig.bumperAction.action.Enable();
     }
 
     // Update is called once per frame
@@ -32,13 +36,19 @@ public class SimulationManager : MonoBehaviour
 
     protected PlayerInput generatePlayerInput()
     {
-        // on the client:
-        // local player gets this from controller
-        // remote players get this from the last received input from them
-        // on the server:
-        // get this from last received.
         return new PlayerInput
         {
+            dashInput = this.inputConfig.dashAction.action.ReadValue<Vector2>(),
+            bumperInput = this.inputConfig.bumperAction.action.ReadValue<Vector2>()
         };
+    }
+
+    void OnDisable()
+    {
+        if (inputConfig != null)
+        {
+            inputConfig.dashAction.action.Disable();
+            inputConfig.bumperAction.action.Disable();
+        }
     }
 }
