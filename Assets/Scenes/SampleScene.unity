@@ -1059,6 +1059,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimulationManager
   playerPrefab: {fileID: 4541111250827696609, guid: 5f8caacafe6ee054486a9ae49f06540d, type: 3}
+  playerInputController:
+    inputConfig: {fileID: 11400000, guid: 0ef5b5ffa20d0f14f8bf61b48a522be4, type: 2}
   simulationTime: 0
   lastUpdateTime: 0
 --- !u!4 &1994714539
