@@ -19,9 +19,9 @@ public class BumperMan
 
     public void update(PlayerInput playerInput, float deltaTime)
     {
-        if (playerInput.dashInput != null)
+        if (playerInput.movementVector != null)
         {
-            this.bumperPosition += (WALK_SPEED * deltaTime) * playerInput.dashInput.Value;
+            this.bumperPosition += (WALK_SPEED * deltaTime) * playerInput.movementVector.Value;
         }
     }
     
