@@ -13,4 +13,5 @@ public class InputConfig : ScriptableObject
 
 
     public InputActionReference bumperVectorAction;
+    public InputActionReference dashAction;
 }

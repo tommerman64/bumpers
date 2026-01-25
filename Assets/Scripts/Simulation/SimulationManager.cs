@@ -25,7 +25,7 @@ public class SimulationManager : MonoBehaviour
         this.lastUpdateTime = this.simulationTime;
         this.simulationTime += Time.deltaTime;
 
-        var playerInput = this.generatePlayerInput();
+        var playerInput = this.generatePlayerInput(this.simulationTime);
         this.simulation.update(
             simulationTime: this.simulationTime,
             deltaTime: this.simulationTime - this.lastUpdateTime,
@@ -33,11 +33,11 @@ public class SimulationManager : MonoBehaviour
         );
     }
 
-    protected PlayerInput generatePlayerInput()
+    protected PlayerInput generatePlayerInput(float simulationTime)
     {
         if (this.playerInputController!= null)
         {
-            return this.playerInputController.generatePlayerInput();
+            return this.playerInputController.generatePlayerInput(simulationTime);
         }
 
         return new PlayerInput{};
