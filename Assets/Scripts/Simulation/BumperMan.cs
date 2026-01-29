@@ -21,7 +21,7 @@ public class BumperMan
     {
         if (playerInput.movementVector != null)
         {
-            this.bumperPosition += (WALK_SPEED * deltaTime) * playerInput.movementVector.Value;
+            this.position += (WALK_SPEED * deltaTime) * playerInput.movementVector.Value;
         }
     }
     

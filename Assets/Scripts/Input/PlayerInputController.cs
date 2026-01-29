@@ -36,7 +36,8 @@ public class PlayerInputController
         }
 
         Vector2 moveVector = Vector2.zero;
-        if (this.inputConfig.moveVectorAction != null)
+        Vector2 moveVectorFromVectorAction = this.inputConfig.moveVectorAction == null ? Vector2.zero : this.inputConfig.moveVectorAction.action.ReadValue<Vector2>();
+        if (moveVectorFromVectorAction.sqrMagnitude > Mathf.Epsilon)
         {
             moveVector = this.inputConfig.moveVectorAction.action.ReadValue<Vector2>();
         }
@@ -47,6 +48,7 @@ public class PlayerInputController
             if (this.inputConfig.left.action.IsPressed()) moveVector.x -= 1;
             if (this.inputConfig.right.action.IsPressed()) moveVector.x += 1;
             moveVector.Normalize();
+
         }
 
         Vector2 bumperVector = Vector2.zero;

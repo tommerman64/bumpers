@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128735d1e7f9c8e46964bb47d5882181, type: 3}
   m_Name: p1InputConfig
   m_EditorClassIdentifier: Assembly-CSharp::InputConfig
-  moveVectorAction: {fileID: 0}
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  bumperVectorAction: {fileID: 0}
+  moveVectorAction: {fileID: 1335150218491078969, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  up: {fileID: -3355996976030560467, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  down: {fileID: 3950240103945404333, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  left: {fileID: 2681055930884383956, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  right: {fileID: 688910654236928070, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bumperVectorAction: {fileID: 6186175284023390556, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  dashAction: {fileID: -4408880955951065276, guid: 052faaac586de48259a63d0c4782560b, type: 3}
