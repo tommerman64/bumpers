@@ -19,7 +19,13 @@ public class PlayerInputController
         this.inputConfig.down?.action.Enable();
         this.inputConfig.left?.action.Enable();
         this.inputConfig.right?.action.Enable();
+
         this.inputConfig.bumperVectorAction?.action.Enable();
+        this.inputConfig.bumperUp?.action.Enable();
+        this.inputConfig.bumperDown?.action.Enable();
+        this.inputConfig.bumperLeft?.action.Enable();
+        this.inputConfig.bumperRight?.action.Enable();
+
         this.inputConfig.dashAction?.action.Enable();
     }
 
@@ -39,22 +45,35 @@ public class PlayerInputController
         Vector2 moveVectorFromVectorAction = this.inputConfig.moveVectorAction == null ? Vector2.zero : this.inputConfig.moveVectorAction.action.ReadValue<Vector2>();
         if (moveVectorFromVectorAction.sqrMagnitude > Mathf.Epsilon)
         {
-            moveVector = this.inputConfig.moveVectorAction.action.ReadValue<Vector2>();
+            moveVector = moveVectorFromVectorAction;
         }
         else
         {
-            if (this.inputConfig.up.action.IsPressed()) moveVector.y += 1;
-            if (this.inputConfig.down.action.IsPressed()) moveVector.y -= 1;
-            if (this.inputConfig.left.action.IsPressed()) moveVector.x -= 1;
-            if (this.inputConfig.right.action.IsPressed()) moveVector.x += 1;
+            if (this.inputConfig.up != null && this.inputConfig.up.action.IsPressed()) moveVector.y += 1;
+            if (this.inputConfig.down != null && this.inputConfig.down.action.IsPressed()) moveVector.y -= 1;
+            if (this.inputConfig.left != null && this.inputConfig.left.action.IsPressed()) moveVector.x -= 1;
+            if (this.inputConfig.right != null && this.inputConfig.right.action.IsPressed()) moveVector.x += 1;
             moveVector.Normalize();
-
         }
 
         Vector2 bumperVector = Vector2.zero;
-        if (this.inputConfig.bumperVectorAction != null)
+        Vector2 bumperVectorFromVectorAction = this.inputConfig.bumperVectorAction == null ? Vector2.zero : this.inputConfig.bumperVectorAction.action.ReadValue<Vector2>();
+        if (bumperVectorFromVectorAction.sqrMagnitude > Mathf.Epsilon)
         {
-            bumperVector = this.inputConfig.bumperVectorAction.action.ReadValue<Vector2>();
+            bumperVector = bumperVectorFromVectorAction;
+        }
+        else
+        {
+            if (this.inputConfig.bumperUp != null && this.inputConfig.bumperUp.action.IsPressed()) bumperVector.y += 1;
+            if (this.inputConfig.bumperDown != null && this.inputConfig.bumperDown.action.IsPressed()) bumperVector.y -= 1;
+            if (this.inputConfig.bumperLeft != null && this.inputConfig.bumperLeft.action.IsPressed()) bumperVector.x -= 1;
+            if (this.inputConfig.bumperRight != null && this.inputConfig.bumperRight.action.IsPressed()) bumperVector.x += 1;
+            // We don't necessarily want to normalize if it's zero, but BumperMan handles normalization of non-zero input.
+            // However, for consistency with moveVector, we can normalize here if non-zero.
+            if (bumperVector.sqrMagnitude > Mathf.Epsilon)
+            {
+                bumperVector.Normalize();
+            }
         }
 
         return new PlayerInput
@@ -74,7 +93,13 @@ public class PlayerInputController
         this.inputConfig.down?.action.Disable();
         this.inputConfig.left?.action.Disable();
         this.inputConfig.right?.action.Disable();
+
         this.inputConfig.bumperVectorAction?.action.Disable();
+        this.inputConfig.bumperUp?.action.Disable();
+        this.inputConfig.bumperDown?.action.Disable();
+        this.inputConfig.bumperLeft?.action.Disable();
+        this.inputConfig.bumperRight?.action.Disable();
+
         this.inputConfig.dashAction?.action.Disable();
     }
 }

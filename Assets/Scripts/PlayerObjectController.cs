@@ -20,6 +20,11 @@ public class PlayerObjectController : MonoBehaviour
         {
             this.originalColor = this.rend.material.color;
         }
+
+        if (this.bumperLineRenderer != null)
+        {
+            this.bumperLineRenderer.useWorldSpace = false;
+        }
     }
 
     // Update is called once per frame
