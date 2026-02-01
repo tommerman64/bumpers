@@ -3,7 +3,7 @@ using UnityEngine;
 public class BumperMan
 {
     GameObject gameObject;
-    public BumperConfig config;
+    public BumperConfig bumperConfig;
 
     public Vector2 position;
     public Vector2 bumperPosition;
@@ -13,34 +13,43 @@ public class BumperMan
     {
         this.gameObject = go;
         this.position = position;
-        this.config = config;
+        this.bumperConfig = config;
         this.bumperPosition = Vector2.up;
         this.bumperSize = config != null ? config.maxBumperSize : 120f;
     }
 
     public void update(PlayerInput playerInput, float deltaTime)
     {
-        float walkSpeed = this.config != null ? this.config.walkSpeed : 3.0f;
+        float walkSpeed = 3.0f;
         if (playerInput.movementVector != null)
         {
             this.position += (walkSpeed * deltaTime) * playerInput.movementVector.Value;
         }
 
-        if (this.config == null) return;
+        if (this.bumperConfig == null) 
+        {
+            return;
+        }
 
         if (playerInput.bumperInput.HasValue && playerInput.bumperInput.Value.sqrMagnitude > 1e-6f)
         {
             Vector2 targetBumperPosition = playerInput.bumperInput.Value.normalized;
-            this.bumperPosition = Vector2.MoveTowards(this.bumperPosition, targetBumperPosition, deltaTime * this.config.bumperMoveSpeed);
+            this.bumperPosition = Vector2.MoveTowards(this.bumperPosition, targetBumperPosition, deltaTime * this.bumperConfig.bumperMoveSpeed);
 
             float distance = Vector2.Distance(this.bumperPosition, targetBumperPosition);
             // Distance is between 0 and 2.
             // 0 => minBumperSize, 2 => maxBumperSize
-            this.bumperSize = Mathf.Lerp(this.config.minBumperSize, this.config.maxBumperSize, distance / 2.0f);
+            if (bumperSize < Mathf.Epsilon) {
+                this.bumperSize = this.bumperConfig.maxBumperSize;
+            } else {
+                var targetBumperSize = Mathf.Lerp(this.bumperConfig.minBumperSize, this.bumperConfig.maxBumperSize, distance / 2.0f);
+                this.bumperSize = Mathf.MoveTowards(this.bumperSize, targetBumperSize, this.bumperConfig.bumperSizeLerpSpeed * deltaTime);
+            }
         }
         else
         {
-            this.bumperSize = Mathf.MoveTowards(this.bumperSize, this.config.maxBumperSize, deltaTime * this.config.bumperSizeLerpSpeed);
+            this.bumperPosition = Vector2.zero;
+            this.bumperSize = 0;
         }
     }
 }

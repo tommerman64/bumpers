@@ -18,4 +18,8 @@ MonoBehaviour:
   left: {fileID: 2681055930884383956, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   right: {fileID: 688910654236928070, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   bumperVectorAction: {fileID: 6186175284023390556, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bumperUp: {fileID: 8777837287438139995, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bumperDown: {fileID: 7340709397983568830, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bumperLeft: {fileID: 7389457809322458228, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bumperRight: {fileID: 7648699764314796213, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   dashAction: {fileID: -4408880955951065276, guid: 052faaac586de48259a63d0c4782560b, type: 3}
