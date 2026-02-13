@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BumperMan
 {
-    GameObject gameObject;
     public BumperConfig bumperConfig;
 
     public Vector2 position;
@@ -11,14 +10,13 @@ public class BumperMan
 
     public BumperMan(GameObject go, Vector2 position, BumperConfig config)
     {
-        this.gameObject = go;
         this.position = position;
         this.bumperConfig = config;
         this.bumperPosition = Vector2.up;
         this.bumperSize = config != null ? config.maxBumperSize : 120f;
     }
 
-    public void update(PlayerInput playerInput, float deltaTime)
+    public void Update(PlayerInput playerInput, float deltaTime)
     {
         float walkSpeed = 3.0f;
         if (playerInput.movementVector != null)

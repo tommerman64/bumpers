@@ -2,22 +2,22 @@ using UnityEngine;
 
 public class Simulation
 {
-    public BumperMan bumperMan1;
+    public BumperMan BumperMan1;
 
     public Simulation(GameObject bumperManPrefab, BumperConfig config)
     {
-        this.spawnBumperMan(bumperManPrefab, config);
+        this.SpawnBumperMan(bumperManPrefab, config);
     }
 
-    public void spawnBumperMan(GameObject prefab, BumperConfig config)
+    public void SpawnBumperMan(GameObject prefab, BumperConfig config)
     {
         var bumperManGameObject = GameObject.Instantiate(prefab);
-        this.bumperMan1 = new BumperMan(bumperManGameObject, position: Vector2.zero, config: config);
-        bumperManGameObject.GetComponent<PlayerObjectController>().setBumperMan(this.bumperMan1);
+        this.BumperMan1 = new BumperMan(bumperManGameObject, position: Vector2.zero, config: config);
+        bumperManGameObject.GetComponent<PlayerObjectController>().SetBumperMan(this.BumperMan1);
     }
 
-    public void update(float simulationTime, float deltaTime, PlayerInput playerInput)
+    public void Update(float simulationTime, float deltaTime, PlayerInput playerInput)
     {
-        this.bumperMan1.update(playerInput, deltaTime);
+        this.BumperMan1.Update(playerInput, deltaTime);
     }
 }

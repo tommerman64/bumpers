@@ -75,7 +75,7 @@ public class PlayerObjectController : MonoBehaviour
         }
     }
 
-    public void setBumperMan(BumperMan bumperMan)
+    public void SetBumperMan(BumperMan bumperMan)
     {
         this.simulationBumperMan = bumperMan;
     }

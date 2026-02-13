@@ -27,7 +27,7 @@ public class SimulationManager : MonoBehaviour
         this.simulationTime += Time.deltaTime;
 
         var playerInput = this.generatePlayerInput(this.simulationTime);
-        this.simulation.update(
+        this.simulation.Update(
             simulationTime: this.simulationTime,
             deltaTime: this.simulationTime - this.lastUpdateTime,
             playerInput: playerInput
