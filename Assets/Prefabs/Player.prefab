@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3212622867955061080}
   - component: {fileID: 458186414138384734}
   - component: {fileID: 6778917053009226603}
+  - component: {fileID: -4778444395302432886}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -105,6 +106,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a335e5eb9cadbb4a8906283a3378a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerObjectController
+--- !u!114 &-4778444395302432886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4541111250827696609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1981b7f40722a43baf251fb247c3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BumperVisuals
   bumperTransform: {fileID: 132535185317526914}
   bumperLineRenderer: {fileID: 1201724756163612163}
   arcRadius: 1
