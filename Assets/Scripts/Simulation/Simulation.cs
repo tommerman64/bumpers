@@ -14,7 +14,7 @@ public class Simulation
         var bumperManGameObject = GameObject.Instantiate(prefab);
         this.BumperMan1 = new BumperMan(bumperManGameObject, position: Vector2.zero, config: config);
 
-        foreach (var view in bumperManGameObject.GetComponents<ISimulationEntityView>())
+        foreach (var view in bumperManGameObject.GetComponents<IBumperManEntity>())
         {
             view.SetBumperMan(this.BumperMan1);
         }

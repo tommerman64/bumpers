@@ -1,4 +1,4 @@
-public interface ISimulationEntityView
+public interface IBumperManEntity
 {
     void SetBumperMan(BumperMan bumperMan);
 }

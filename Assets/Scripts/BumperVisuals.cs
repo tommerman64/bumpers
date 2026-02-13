@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BumperVisuals : MonoBehaviour, ISimulationEntityView
+public class BumperVisuals : MonoBehaviour, IBumperManEntity
 {
     private BumperMan simulationBumperMan = null;
 
