@@ -13,7 +13,11 @@ public class Simulation
     {
         var bumperManGameObject = GameObject.Instantiate(prefab);
         this.BumperMan1 = new BumperMan(bumperManGameObject, position: Vector2.zero, config: config);
-        bumperManGameObject.GetComponent<PlayerObjectController>().SetBumperMan(this.BumperMan1);
+
+        foreach (var view in bumperManGameObject.GetComponents<ISimulationEntityView>())
+        {
+            view.SetBumperMan(this.BumperMan1);
+        }
     }
 
     public void Update(float simulationTime, float deltaTime, PlayerInput playerInput)
