@@ -27,7 +27,7 @@ public class PlayerObjectController : MonoBehaviour, IBumperManEntity
         }
 
         if (this.rend != null) this.rend.material.color = originalColor;
-        this.transform.position = new Vector3(this.simulationBumperMan.position.x, 0f, this.simulationBumperMan.position.y);
+        this.transform.position = Simulation.SimPositionSwizzle(this.simulationBumperMan.position);
     }
 
     public void SetBumperMan(BumperMan bumperMan)

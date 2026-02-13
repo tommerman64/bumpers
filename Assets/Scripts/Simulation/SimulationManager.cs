@@ -6,6 +6,7 @@ public class SimulationManager : MonoBehaviour
     public Simulation simulation;
 
     public GameObject playerPrefab;
+    public GameObject ballPrefab;
     public BumperConfig bumperConfig;
     public PlayerInputController playerInputController;
 
@@ -15,7 +16,8 @@ public class SimulationManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        this.simulation = new Simulation(playerPrefab, bumperConfig);
+        this.simulation = new Simulation(bumperManPrefab: playerPrefab, ballPrefab: ballPrefab, config: bumperConfig);
+        
         this.playerInputController?.Enable();
     }
 
