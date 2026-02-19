@@ -7,6 +7,7 @@ public class BumperMan
     public Vector2 position;
     public Vector2 bumperPosition;
     public float bumperSize;
+    public float radius;
 
     public BumperMan(GameObject go, Vector2 position, BumperConfig config)
     {
@@ -14,6 +15,7 @@ public class BumperMan
         this.bumperConfig = config;
         this.bumperPosition = Vector2.up;
         this.bumperSize = config != null ? config.maxBumperSize : 120f;
+        this.radius = config != null ? config.playerRadius : 1.0f;
     }
 
     public void Update(PlayerInput playerInput, float deltaTime)

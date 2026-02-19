@@ -13,10 +13,13 @@ public class SimulationManager : MonoBehaviour
     public float simulationTime = 0f;
     public float lastUpdateTime = 0f;
 
+    public Vector2 levelDimensions = new Vector2(20f, 20f);
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.simulation = new Simulation(bumperManPrefab: playerPrefab, ballPrefab: ballPrefab, config: bumperConfig);
+        this.simulation.levelDimensions = this.levelDimensions;
         
         this.playerInputController?.Enable();
     }
