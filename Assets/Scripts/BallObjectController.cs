@@ -17,7 +17,7 @@ public class BallObjectController : MonoBehaviour
             return;
         }
 
-        this.transform.position = simulationBall.position;
+        this.transform.position = Simulation.SimPositionSwizzle(simulationBall.position);
     }
 
     public void SetBall(Ball ball)
