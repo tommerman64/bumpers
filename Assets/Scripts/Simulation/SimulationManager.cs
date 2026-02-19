@@ -9,7 +9,8 @@ public class SimulationManager : MonoBehaviour
     public GameObject ballPrefab;
     public BumperConfig bumperConfig;
     public PlayerInputController playerInputController;
-
+    public BallConfig BallConfig;
+    
     public float simulationTime = 0f;
     public float lastUpdateTime = 0f;
 
@@ -18,7 +19,7 @@ public class SimulationManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        this.simulation = new Simulation(bumperManPrefab: playerPrefab, ballPrefab: ballPrefab, config: bumperConfig);
+        this.simulation = new Simulation(bumperManPrefab: playerPrefab, ballPrefab: ballPrefab, bumperConfig: bumperConfig, ballConfig: BallConfig);
         this.simulation.levelDimensions = this.levelDimensions;
         
         this.playerInputController?.Enable();

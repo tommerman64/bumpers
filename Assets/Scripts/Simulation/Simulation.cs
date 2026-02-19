@@ -5,12 +5,14 @@ public class Simulation
     public BumperMan BumperMan1;
     public Ball ball;
     public Vector2 levelDimensions;
-    public BumperConfig config;
+    private BumperConfig BumperConfig;
+    private BallConfig BallConfig;
 
-    public Simulation(GameObject bumperManPrefab, GameObject ballPrefab, BumperConfig config)
+    public Simulation(GameObject bumperManPrefab, GameObject ballPrefab, BumperConfig bumperConfig, BallConfig ballConfig)
     {
-        this.config = config;
-        this.SpawnBumperMan(bumperManPrefab, config);
+        this.BumperConfig = bumperConfig;
+        this.BallConfig = ballConfig;
+        this.SpawnBumperMan(bumperManPrefab, bumperConfig);
         this.SpawnBall(ballPrefab);
     }
 
@@ -33,7 +35,7 @@ public class Simulation
     private void SpawnBall(GameObject prefab)
     {
         var ballGameObject = GameObject.Instantiate(prefab);
-        this.ball = new Ball();
+        this.ball = new Ball(this.BallConfig);
         ballGameObject.GetComponent<BallObjectController>().SetBall(this.ball);
     }
 
@@ -46,7 +48,7 @@ public class Simulation
 
     public void ResolveBallCollisions()
     {
-        if (ball == null || config == null)
+        if (ball == null || BumperConfig == null)
         {
             return;
         }
@@ -55,32 +57,32 @@ public class Simulation
         float halfWidth = levelDimensions.x / 2f;
         float halfHeight = levelDimensions.y / 2f;
 
-        if (ball.position.x - config.ballRadius < -halfWidth)
+        if (ball.position.x - BumperConfig.ballRadius < -halfWidth)
         {
-            ball.position.x = -halfWidth + config.ballRadius;
-            ball.ApplyImpulse(new Vector2(-2f * ball.velocity.x, 0f), ImpulseType.WALL, config);
+            ball.position.x = -halfWidth + BumperConfig.ballRadius;
+            ball.ApplyImpulse(new Vector2(-ball.velocity.x, 0f).normalized, ImpulseType.WALL);
         }
-        else if (ball.position.x + config.ballRadius > halfWidth)
+        else if (ball.position.x + BumperConfig.ballRadius > halfWidth)
         {
-            ball.position.x = halfWidth - config.ballRadius;
-            ball.ApplyImpulse(new Vector2(-2f * ball.velocity.x, 0f), ImpulseType.WALL, config);
+            ball.position.x = halfWidth - BumperConfig.ballRadius;
+            ball.ApplyImpulse(new Vector2(-ball.velocity.x, 0f).normalized, ImpulseType.WALL);
         }
 
-        if (ball.position.y - config.ballRadius < -halfHeight)
+        if (ball.position.y - BumperConfig.ballRadius < -halfHeight)
         {
-            ball.position.y = -halfHeight + config.ballRadius;
-            ball.ApplyImpulse(new Vector2(0f, -2f * ball.velocity.y), ImpulseType.WALL, config);
+            ball.position.y = -halfHeight + BumperConfig.ballRadius;
+            ball.ApplyImpulse(new Vector2(0f, -ball.velocity.y).normalized, ImpulseType.WALL);
         }
-        else if (ball.position.y + config.ballRadius > halfHeight)
+        else if (ball.position.y + BumperConfig.ballRadius > halfHeight)
         {
-            ball.position.y = halfHeight - config.ballRadius;
-            ball.ApplyImpulse(new Vector2(0f, -2f * ball.velocity.y), ImpulseType.WALL, config);
+            ball.position.y = halfHeight - BumperConfig.ballRadius;
+            ball.ApplyImpulse(new Vector2(0f, -ball.velocity.y).normalized, ImpulseType.WALL);
         }
 
         // Player collisions
         if (BumperMan1 != null)
         {
-            float combinedRadius = config.ballRadius + BumperMan1.radius;
+            float combinedRadius = BumperConfig.ballRadius + BumperMan1.radius;
             Vector2 toBall = ball.position - BumperMan1.position;
             float distance = toBall.magnitude;
 
@@ -91,8 +93,8 @@ public class Simulation
                 ball.position = BumperMan1.position + normal * combinedRadius;
 
                 // Simple impulse for now
-                Vector2 impulse = normal * config.ballBumperImpulseStrength;
-                ball.ApplyImpulse(impulse, ImpulseType.BUMPER, config);
+                Vector2 impulse = normal * BumperConfig.ballBumperImpulseStrength;
+                ball.ApplyImpulse(impulse, ImpulseType.BUMPER);
             }
         }
     }

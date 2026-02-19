@@ -11,6 +11,4 @@ public class BumperConfig : ScriptableObject
     public float ballRadius = 0.5f;
     public float playerRadius = 1.0f;
     public float ballBumperImpulseStrength = 10.0f;
-    public float ballWallRestitution = 0.8f;
-    public float ballDecayRate = 0.1f;
 }
