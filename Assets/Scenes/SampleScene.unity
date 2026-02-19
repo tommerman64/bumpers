@@ -1059,6 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimulationManager
   playerPrefab: {fileID: 4541111250827696609, guid: 5f8caacafe6ee054486a9ae49f06540d, type: 3}
+  ballPrefab: {fileID: 5953599361406117224, guid: f0acc2e1ebd35cd4db90e0d8e18204e6, type: 3}
   bumperConfig: {fileID: 11400000, guid: 77ad9e0e1de18144ab7d088d403590ec, type: 2}
   playerInputController:
     inputConfig: {fileID: 11400000, guid: 0ef5b5ffa20d0f14f8bf61b48a522be4, type: 2}
